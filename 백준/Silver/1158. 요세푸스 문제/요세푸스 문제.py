@@ -1,15 +1,14 @@
-nk = input().split()
-n = int(nk[0])
-k = int(nk[1])
+n, k = map(int, input().split())
 
-people = []
+#people = [i+1 for i in range(n)]
+people = [i for i in range(1, n+1)]
 result = []
 index = 0
 
-for i in range(n):
-    people.append(i+1)
-
-while(len(people) > 0):
-    result.append(str(people.pop((index + k - 1) % len(people))))
-    index = (index + k - 1) % (len(people)+1)
+while people:
+    index += k - 1
+    if index >= len(people):
+        index %= len(people)
+    result.append(str(people.pop(index)))
+    
 print("<", ", ".join(result), ">", sep="")
