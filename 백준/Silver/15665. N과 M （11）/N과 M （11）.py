@@ -1,3 +1,10 @@
+import sys
+input = sys.stdin.readline
+n, m = map(int, input().split())
+nums = sorted(list(map(int, input().split())))
+s = []
+result = {}
+
 def dfs():
     if len(s) == m:
         if tuple(s) not in result:
@@ -8,11 +15,17 @@ def dfs():
         s.append(i)
         dfs()
         s.pop()
-            
-n, m = map(int, input().split())
-nums = list(map(int, input().split()))
-nums.sort()
-s = []
-result = {}
-
+           
 dfs()
+
+#-------파이썬 내장함수------
+#from itertools import product
+
+#N, M = map(int, input().split())
+#numlist = list(map(int, input().split()))
+#case = sorted(set(product(numlist, repeat=M)))
+
+#for i in case:
+#    for j in i:
+#        print(j, end=" ")
+#    print()
