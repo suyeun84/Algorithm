@@ -7,11 +7,7 @@ def dfs():
             print(*s)
         return
     for i in nums:
-        if len(s) == 0:
-            s.append(i)
-            dfs()
-            s.pop()
-        elif i >= s[len(s)-1]:
+        if len(s) == 0 or i >= s[-1]:
             s.append(i)
             dfs()
             s.pop()
