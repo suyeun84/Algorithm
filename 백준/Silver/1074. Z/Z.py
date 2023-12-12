@@ -6,18 +6,8 @@ result = 0
 
 while True:
     if(N == 1):
-        if r % 2 == 0 and c % 2 == 0:
-            print(result)
-            break
-        elif r % 2 == 1 and c % 2 == 0:
-            print(result+2)
-            break
-        elif r % 2 == 0 and c % 2 == 1:
-            print(result+1)
-            break
-        elif r % 2 == 1 and c % 2 == 1:
-            print(result+3)
-            break
+        print(result+2*r+c)
+        break
 
     if r < 2**(N-1) and c >= 2**(N-1):
         #1사분면
