@@ -2,9 +2,7 @@ import sys
 
 input = sys.stdin.readline
 N = int(input())
-W = []
-for i in range(N):
-    W.append(list(map(int, input().split())))
+W = [list(map(int, input().split())) for _ in range(N)]
 visited = [0]*N
 result = sys.maxsize
 
