@@ -1,18 +1,20 @@
 from collections import deque
-n, k = map(int,input().split())
-graph=[0]*1000001
-def bfs(n,k):
+
+#동일 시간 내에서 가장 먼저 도착하는 경우
+def bfs(n, k):
     q = deque()
     q.append(n)
-    graph[n] = 1
     while q:
         n = q.popleft()
         if n == k:
-            print(graph[n]-1)
+            print(graph[n])
             return
-        for nn in (n+1,n-1,n*2):
-            if 0<=nn<=100000:
-                if not graph[nn] or graph[nn] > graph[n]+1:
-                    graph[nn] = graph[n] + 1
-                    q.append(nn)
+        for next_n in (n+1,n-1,n*2):
+            if 0<=next_n<=100000:
+                if graph[next_n]==0 or graph[next_n] > graph[n]+1:
+                    graph[next_n] = graph[n] + 1
+                    q.append(next_n)
+
+n, k = map(int,input().split())
+graph=[0]*100001
 bfs(n,k)
