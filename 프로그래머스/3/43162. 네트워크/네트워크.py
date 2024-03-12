@@ -1,15 +1,16 @@
-def dfs(n, visited, computers, com):
-    visited[com] = True
-    for link in range(n):
-        if link != com and computers[com][link] == 1 and visited[link] == False:
-            dfs(n, visited, computers, link)
-    
+from collections import deque
+def dfs(n, computers, idx, visited):
+    for i in range(n):
+        if computers[idx][i] == 1 and idx != i and visited[i] == False:
+            visited[i] = True
+            dfs(n, computers, i, visited)
 
 def solution(n, computers):
     answer = 0
-    visited = [False for _ in range(n)]
-    for com in range(n):
-        if visited[com] == False:
-            dfs(n, visited, computers, com)
+    visited = [False]*n
+    for i in range(n):
+        if visited[i] == False:
+            visited[i] = True
+            dfs(n, computers, i, visited)
             answer += 1
     return answer
