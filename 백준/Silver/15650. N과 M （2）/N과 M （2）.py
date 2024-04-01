@@ -1,18 +1,15 @@
-def dfs(prev):
-    if len(s) == m:
-        print(' '.join(map(str, s)))
+N, M = map(int, input().split())
+answer = []
+
+def backtracking(x):
+    if len(answer) == M:
+        print(' '.join(map(str, answer)))
         return
-    for i in range(prev, n+1):
-        if visited[i]:
-            continue
-        visited[i] = True
-        s.append(i)
-        dfs(i)
-        s.pop()
-        visited[i] = False
     
+    for i in range(x, N+1):
+        if i not in answer:
+            answer.append(i)
+            backtracking(i+1)
+            answer.pop()
     
-n, m = map(int, input().split())
-s = []
-visited = [False]*(n+1)
-dfs(1)
+backtracking(1)
