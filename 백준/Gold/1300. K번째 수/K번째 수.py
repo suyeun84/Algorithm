@@ -17,6 +17,7 @@ def solution():
                 cnt += N
             else:
                 cnt += mid // i
+
         if cnt < k:
             start = mid + 1
         else:
