@@ -1,19 +1,24 @@
 import sys
 
-input = sys.stdin.readline
-N = int(input())
-meeting = []
-for _ in range(N):
-    a, b = map(int, input().strip().split())
-    meeting.append([a,b])
-meeting.sort(key=lambda x: (x[1], x[0]))
 
-curr = 0
-num = 0
-for meet in meeting:
-    start = meet[0]
-    end = meet[1]
-    if start >= curr:
-        num += 1
-        curr = end
-print(num)
+def solution():
+    input = sys.stdin.readline
+    N = int(input())
+    M = []
+    for _ in range(N):
+        S, E = map(int, input().split())
+        M.append([E, S])
+
+    M.sort()
+    curr = 0
+    cnt = 0
+    for T in M:
+        if T[1] >= curr:
+            cnt +=1
+            curr = T[0]
+
+    print(cnt)
+
+
+if __name__ == '__main__':
+    solution()
