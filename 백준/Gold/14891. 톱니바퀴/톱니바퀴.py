@@ -17,7 +17,7 @@ def solution():
             wheel[num][i] = tmp[i-1]
 
     def turn_rev_clock(num):
-        tmp = [0]*8
+        tmp = [0] * 8
         for i in range(8):
             tmp[i] = wheel[num][i]
         wheel[num][7] = tmp[0]
@@ -30,26 +30,17 @@ def solution():
         d = [0]*4
         d[n] = dir
         for i in range(n+1, 4):
-            if wheel[i-1][2] != wheel[i][6]:
-                if d[i-1] == -1:
-                    d[i] = 1
-                else:
-                    d[i] = -1
-            else:
+            if wheel[i-1][2] == wheel[i][6]:
                 break
+            d[i] = 1 if d[i-1] == -1 else -1
 
         for i in range(n-1, -1, -1):
-            if wheel[i+1][6] != wheel[i][2]:
-                if d[i+1] == -1:
-                    d[i] = 1
-                else:
-                    d[i] = -1
-            else:
+            if wheel[i+1][6] == wheel[i][2]:
                 break
+            d[i] = 1 if d[i+1] == -1 else -1
+
         for i in range(4):
-            if d[i] == 0:
-                continue
-            elif d[i] == 1:
+            if d[i] == 1:
                 turn_clock(i)
             elif d[i] == -1:
                 turn_rev_clock(i)
@@ -57,6 +48,7 @@ def solution():
     for i in range(4):
         if wheel[i][0] == 1:
             answer += math.pow(2, i)
+
     print(int(answer))
 
 
