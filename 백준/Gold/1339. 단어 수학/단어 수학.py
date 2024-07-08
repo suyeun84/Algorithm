@@ -1,29 +1,24 @@
 import sys
-import heapq
-import math
 
 
 def solution():
     input = sys.stdin.readline
     N = int(input())
-    word_sum = [0]*26
+    word_sum = {}
+    curr = 9
     answer = 0
     for _ in range(N):
         word = input().strip()
         l = len(word)
         for i in range(l):
-            idx = ord(word[i]) - ord('A')
-            word_sum[idx] += 10**(l-i-1)
+            if word[i] in word_sum:
+                word_sum[word[i]] += 10**(l-i-1)
+            else:
+                word_sum[word[i]] = 10**(l-i-1)
 
-    pq = []
-    curr = 9
-    for i in range(26):
-        if word_sum[i] > 0:
-            heapq.heappush(pq, (-word_sum[i]))
-
-    while pq:
-        sum = heapq.heappop(pq)
-        answer += -sum*curr
+    lst = sorted(word_sum.items(), key=lambda x: x[1], reverse=True)
+    for l in lst:
+        answer += curr * l[1]
         curr -= 1
     print(answer)
 
