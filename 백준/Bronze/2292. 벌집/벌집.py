@@ -3,17 +3,12 @@ def solution():
     if N == 1:
         print(1)
         return
-    start = 2
-    end = 7
-    mid = 12
-    answer = 2
-    while N > end:
-        start = start + mid
-        end = end + mid
-        mid += 6
-        answer += 1
-    print(answer)
-
+    num = 1
+    for i in range(N):
+        num += 6*i
+        if N <= num:
+            print(i+1)
+            break
 
 if __name__ == '__main__':
     solution()
