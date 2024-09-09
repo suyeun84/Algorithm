@@ -1,12 +1,14 @@
 from collections import Counter
-alpa = Counter(input().upper())
-max_num = 0
-max_str = ''
 
-for i, j in alpa.items():
-    if j > max_num:
-        max_num = j
-        max_str = i
-    elif j == max_num:
-        max_str = "?"
-print(max_str)
+
+def solution():
+    str = Counter(input().upper())
+    top = str.most_common(2)
+    if len(top) == 1 or top[0][1] != top[1][1]:
+        print(top[0][0])
+    else:
+        print("?")
+
+
+if __name__ == '__main__':
+    solution()
