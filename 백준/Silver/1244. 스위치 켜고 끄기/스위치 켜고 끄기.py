@@ -7,6 +7,13 @@ def solution():
     n = int(input())
     switch = list(map(int, input().split(' ')))
     student_num = int(input())
+    
+    def change(idx):
+        nonlocal switch
+        if switch[idx] == 0:
+            switch[idx] = 1
+        elif switch[idx] == 1:
+            switch[idx] = 0
 
     for _ in range(student_num):
         gender, num = map(int, input().split(' '))
@@ -14,29 +21,17 @@ def solution():
             # 남학생
             for i in range(n):
                 if (i+1) % num == 0:
-                    if switch[i] == 0:
-                        switch[i] = 1
-                    elif switch[i] == 1:
-                        switch[i] = 0
+                    change(i)
         elif gender == 2:
             # 여학생
             left = num-1 - 1
             right = num-1 + 1
-            if switch[num-1] == 1:
-                switch[num-1] = 0
-            else:
-                switch[num-1] = 1
+            change(num-1)
             while left >= 0 and right < n:
                 if switch[left] != switch[right]:
                     break
-                if switch[left] == 1:
-                    switch[left] = 0
-                else:
-                    switch[left] = 1
-                if switch[right] == 1:
-                    switch[right] = 0
-                else:
-                    switch[right] = 1
+                change(left)
+                change(right)
                 left -= 1
                 right += 1
     for i in range(n//20+1):
