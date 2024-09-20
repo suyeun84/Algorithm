@@ -9,12 +9,7 @@ def solution():
 
     for i in range(N):
         if S[i] == 'P':
-            start = i-K
-            end = i+K+1
-            if i-K < 0:
-                start = 0
-            if i+K+1 > N:
-                end = N
+            start, end = max(0, i - K), min(N, i + K + 1)
             for idx in range(start, end):
                 if S[idx] == 'H' and check[idx] == 0:
                     check[idx] = 1
