@@ -7,7 +7,7 @@ def solution():
     board = []
     answer = 0
     zero_cnt = 0
-    d = [[1,0], [-1,0], [0,1], [0,-1]]
+    d = [[1, 0], [-1, 0], [0, 1], [0, -1]]
     for _ in range(r):
         board.append(list(map(int, input().split(' '))))
 
@@ -60,12 +60,13 @@ def solution():
         for i in range(r):
             for j in range(c):
                 if board[i][j] != 0 and visited[i][j] == 0:
-                    check(i, j)
                     cnt += 1
-        if cnt >= 2:
-            print(answer)
-            break
+                    if cnt >= 2:
+                        print(answer)
+                        return
+                    check(i, j)
 
 
 if __name__ == '__main__':
     solution()
+    
