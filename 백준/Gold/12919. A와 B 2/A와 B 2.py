@@ -1,25 +1,27 @@
 import sys
-input = sys.stdin.readline
+from collections import deque
 
-S = input().strip()
-T = input().strip()
-result = 0
+def solution():
+    input = sys.stdin.readline
+    S = input().strip()
+    T = input().strip()
+    answer = 0
 
-#T를 S로 만들기
-def brute(curr):
-    global result
-    #break 조건 설정해주기
-    if len(curr) == 0:
-        return
-    if curr == S:
-        result = 1
-        return
-    #문자열 맨뒤 A면 A 삭제
-    if curr[-1] == 'A':
-        brute(curr[:-1])
-    #문자열 맨앞 B면 삭제하고 reverse
-    if curr[0] == 'B':
-        brute(curr[1:][::-1])
-        
-brute(T)
-print(result)
+    q = deque()
+    q.append(T)
+    while q:
+        t = q.popleft()
+        if t == S:
+            answer = 1
+            break
+        if len(t) <= len(S):
+            continue
+        if t[0] == 'B':
+            q.append(t[1:][::-1])
+        if t[-1] == 'A':
+            q.append(t[:-1])
+    print(answer)
+
+
+if __name__ == '__main__':
+    solution()
