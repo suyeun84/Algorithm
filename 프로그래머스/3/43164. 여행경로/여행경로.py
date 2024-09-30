@@ -1,21 +1,18 @@
 def solution(tickets):
     answer = []
+    visited = [0]*len(tickets)
     
-    visited = [False]*len(tickets)
-    
-    def dfs(airport, path):
-        if len(path) == len(tickets)+1:
-            answer.append(path)
+    def dfs(curr, res):
+        if len(res) == len(tickets)+1:
+            answer.append(res)
             return
-        
-        for idx, ticket in enumerate(tickets):
-            if airport == ticket[0] and visited[idx] == False:
-                visited[idx] = True
-                dfs(ticket[1], path+[ticket[1]])
-                visited[idx] = False
+        for idx in range(len(tickets)):
+            if tickets[idx][0] == curr and visited[idx] == 0:
+                visited[idx] = 1
+                dfs(tickets[idx][1], res + [tickets[idx][1]])
+                visited[idx] = 0
             
-    dfs("ICN", ["ICN"])
-    
+            
+    dfs('ICN', ['ICN'])
     answer.sort()
-    
     return answer[0]
